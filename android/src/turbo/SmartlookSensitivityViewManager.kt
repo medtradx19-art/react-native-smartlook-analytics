@@ -38,11 +38,12 @@ class SmartlookSensitiveViewManager(reactContext: ReactApplicationContext) : Vie
         SmartlookSensitiveViewManagerImpl.setIsSensitive(view, isSensitive)
     }
 
-    override fun receiveCommand(
-      view: SmartlookSensitiveView,
-      commandId: String?,
-      args: ReadableArray?
-    ) {
-        delegate.receiveCommand(view, commandId, args)
-    }
+ override fun receiveCommand(
+  view: SmartlookSensitiveView,
+  commandId: String?,
+  args: ReadableArray?
+) {
+  if (commandId == null) return
+  delegate.receiveCommand(view, commandId, args)
+}
 }
